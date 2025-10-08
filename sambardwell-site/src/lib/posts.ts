@@ -17,9 +17,7 @@ export type PostMeta = {
   draft?: boolean;
 };
 
-export type Post = PostMeta & {
-  slug: string;
-};
+export type Post = PostMeta & { slug: string };
 
 let _postsCache:
   | {
@@ -54,6 +52,13 @@ function extractExportedMetadata(source: string): Partial<PostMeta> | null {
   return null;
 }
 
+function coerceDate(d: unknown): string | undefined {
+  if (!d) return undefined;
+  if (d instanceof Date) return d.toISOString().slice(0, 10);
+  if (typeof d === "string") return d;
+  return undefined;
+}
+
 async function readPostFile(slug: string): Promise<Post | null> {
   const full = path.join(POSTS_DIR, `${slug}.mdx`);
   try {
@@ -66,9 +71,12 @@ async function readPostFile(slug: string): Promise<Post | null> {
     if (meta.draft) return null;
 
     const energy = normalizeEnergy(meta.energy);
+    const date = coerceDate(meta.date);
+
     return {
       slug,
       ...meta,
+      date,
       energy,
     };
   } catch {
@@ -108,9 +116,10 @@ export async function getAllPosts(): Promise<Post[]> {
     )
   ).filter(Boolean) as Post[];
 
-  posts.sort(
-    (a, b) => (b.date || "").localeCompare(a.date || "")
-  );
+  function dateValue(p: Post): number {
+    return p.date ? Date.parse(p.date) || 0 : 0;
+  }
+  posts.sort((a, b) => dateValue(b) - dateValue(a));
 
   _postsCache = { signature, posts };
   return posts;

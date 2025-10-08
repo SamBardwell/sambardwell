@@ -40,9 +40,9 @@ export function BlogGrid({ initialPosts, filterOptions }: BlogGridProps) {
   }, [initialPosts, activeTypes, activeEnergy, sort]);
 
   return (
-    <main className="flex flex-col gap-6">
+    <main className="mx-auto max-w-7xl px-6 flex flex-col gap-6">
       <FiltersBar types={filterOptions.types} energies={filterOptions.energies} />
-      <div className="grid gap-5 grid-cols-[repeat(auto-fill,minmax(13rem,1fr))]">
+      <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(11rem,1fr))]">
         {filtered.map((p) => (
           <PostCard key={p.slug} post={p} />
         ))}

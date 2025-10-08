@@ -24,11 +24,6 @@ export async function generateMetadata(
       type: "article",
       url: `/blog/${slug}`,
     },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title || slug,
-      description: post.description || "",
-    },
   };
 }
 

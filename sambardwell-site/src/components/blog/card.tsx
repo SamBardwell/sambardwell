@@ -5,7 +5,7 @@ import { blogPostHref } from "@/lib/routes";
 
 export function PostCard({ post }: { post: Post }) {
   return (
-    <div className="w-48 flex flex-col group">
+    <div className="flex flex-col group">
       <Link
         href={blogPostHref(post.slug)}
         className="relative rounded-xl border border-zinc-700 bg-zinc-900/70 overflow-hidden shadow-sm transition-all
