@@ -5,25 +5,11 @@ export const metadata = {
 
 export default function ResumePage() {
   return (
-    <section className="prose prose-invert max-w-3xl">
-      <h1>Trainer Profile</h1>
-      <p>Short professional summary.</p>
-      <h2>Badges</h2>
-      <ul>
-        <li>⚡ APIs</li>
-        <li>🧠 Architecture</li>
-      </ul>
-      <h2>Moves (Skills)</h2>
-      <ul>
-        <li>TypeScript (STAB)</li>
-        <li>Next.js</li>
-        <li>Design Systems</li>
-      </ul>
-      <h2>Evolutions (Career Growth)</h2>
-      <ol>
-        <li>Junior Developer → Mid</li>
-        <li>Mid → Senior</li>
-      </ol>
-    </section>
+     <div className="px-6">
+          <h1 className="text-2xl font-semibold">Under Construction</h1>
+          <p className="mt-4 text-sm text-zinc-400">
+            Check back soon.
+          </p>
+        </div>
   );
 }
