@@ -7,19 +7,18 @@ export function PostCard({ post }: { post: Post }) {
   const slug = post.slug;
 
   return (
-    <div className="group flex flex-col w-full">
+    <div className="group flex flex-col w-full h-full">
       <Link
         href={blogPostHref(slug)}
         aria-label={post.title || slug}
         className="relative block rounded-xl overflow-hidden ring-1 ring-zinc-700 transition
-                   group-hover:ring-zinc-500 group-hover:shadow-md group-hover:shadow-black/40"
+                   group-hover:ring-zinc-500 group-hover:shadow-md group-hover:shadow-black/40 aspect-[63/88]"
       >
         <Image
           src={post.thumbnail ?? "/placeholder.png"}
           alt={post.title || slug}
-          width={350}
-          height={490}
-          className="w-full h-auto object-cover pointer-events-none select-none transition-transform
+          fill
+          className="absolute inset-0 object-cover pointer-events-none select-none transition-transform
                      group-hover:scale-[1.015]"
           priority={false}
         />
@@ -34,11 +33,6 @@ export function PostCard({ post }: { post: Post }) {
           <h3 className="text-sm font-semibold leading-snug tracking-tight flex-1 truncate">
             {post.title || slug}
           </h3>
-          {typeof post.impact === "number" && (
-            <span className="text-[11px] font-medium text-emerald-300 tabular-nums">
-              {post.impact.toFixed(0)}
-            </span>
-          )}
         </div>
 
         {post.energy?.length && (
@@ -75,18 +69,6 @@ export function PostCard({ post }: { post: Post }) {
             </time>
           )}
         </div>
-
-        {(typeof post.difficulty === "number" ||
-          typeof post.impact === "number") && (
-          <div className="mt-1 flex gap-3 text-[10px] text-zinc-400">
-            {typeof post.difficulty === "number" && (
-              <span className="tabular-nums">Diff: {post.difficulty}</span>
-            )}
-            {typeof post.impact === "number" && (
-              <span className="tabular-nums">Imp: {post.impact}</span>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );

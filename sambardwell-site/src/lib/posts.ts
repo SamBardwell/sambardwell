@@ -9,8 +9,6 @@ export type PostMeta = {
   date?: string;
   type?: string;
   energy?: string[];
-  difficulty?: number;
-  impact?: number;
   tags?: string[];
   thumbnail?: string;
   draft?: boolean;

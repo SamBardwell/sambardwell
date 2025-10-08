@@ -37,7 +37,7 @@ export function FiltersBar({ types, energies }: Props) {
   const isActiveMulti = (key: string, value: string) =>
     sp.getAll(key).includes(value);
 
-  const sort = sp.get("sort") || "recent";
+  const sort = sp.get("sort") || "date-desc";
   const hasFilters = sp.getAll("type").length > 0 || sp.getAll("energy").length > 0;
 
   return (
@@ -52,11 +52,8 @@ export function FiltersBar({ types, energies }: Props) {
             })
           }
         >
-          <option value="recent">Recently Added</option>
-          <option value="difficulty-desc">Difficulty ↓</option>
-          <option value="difficulty-asc">Difficulty ↑</option>
-          <option value="impact-desc">Impact ↓</option>
-          <option value="impact-asc">Impact ↑</option>
+          <option value="date-desc">Date (newest)</option>
+          <option value="date-asc">Date (oldest)</option>
         </select>
         <div className="flex items-center gap-1 text-xs text-zinc-500">Filters:</div>
         {types.map(t => (

@@ -1,21 +1,25 @@
+import { Suspense } from "react";
 import { getAllPosts, getFilterOptions } from "@/lib/posts";
 import { BlogGrid } from "@/components/blog/blog-grid";
-import { Suspense } from "react";
+import { PostCardSkeletonGrid } from "@/components/blog/post-card-skeleton";
 
 export const metadata = {
   title: "Blog",
   description: "Posts",
 };
 
-export default async function BlogIndex() {
+async function BlogIndexContent() {
   const [posts, filterOpts] = await Promise.all([
     getAllPosts(),
     getFilterOptions(),
   ]);
+  return <BlogGrid initialPosts={posts} filterOptions={filterOpts} />;
+}
 
+export default function BlogIndex() {
   return (
-    <Suspense fallback={<div className="px-6 py-8 text-sm text-zinc-500">Loading posts…</div>}>
-      <BlogGrid initialPosts={posts} filterOptions={filterOpts} />
+    <Suspense fallback={<PostCardSkeletonGrid count={9} />}>
+      <BlogIndexContent />
     </Suspense>
   );
 }

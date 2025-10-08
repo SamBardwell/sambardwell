@@ -6,10 +6,10 @@ import { PostCard } from "@/components/blog/card";
 import type { Post } from "@/lib/posts";
 
 const SORTERS: Record<string, (a: Post, b: Post) => number> = {
-  "difficulty-desc": (a, b) => (b.difficulty || 0) - (a.difficulty || 0),
-  "difficulty-asc": (a, b) => (a.difficulty || 0) - (b.difficulty || 0),
-  "impact-desc": (a, b) => (b.impact || 0) - (a.impact || 0),
-  "impact-asc": (a, b) => (a.impact || 0) - (b.impact || 0),
+  "date-desc": (a, b) =>
+    Date.parse(b.date || "") - Date.parse(a.date || ""),
+  "date-asc": (a, b) =>
+    Date.parse(a.date || "") - Date.parse(b.date || ""),
 };
 
 export interface BlogGridProps {
@@ -26,7 +26,7 @@ export function BlogGrid({ initialPosts, filterOptions }: BlogGridProps) {
 
   const activeTypes = toArray(sp.getAll("type"));
   const activeEnergy = toArray(sp.getAll("energy"));
-  const sort = sp.get("sort") || "recent";
+  const sort = sp.get("sort") || "date-desc";
 
   const filtered = useMemo(() => {
     const base = initialPosts.filter((p) => {
@@ -42,7 +42,7 @@ export function BlogGrid({ initialPosts, filterOptions }: BlogGridProps) {
   return (
     <main className="mx-auto max-w-7xl px-6 flex flex-col gap-6">
       <FiltersBar types={filterOptions.types} energies={filterOptions.energies} />
-      <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(11rem,1fr))]">
+      <div className="grid items-stretch gap-4 grid-cols-[repeat(auto-fill,minmax(11rem,1fr))]">
         {filtered.map((p) => (
           <PostCard key={p.slug} post={p} />
         ))}
