@@ -18,44 +18,38 @@ export async function generateMetadata(
   return {
     title: post.title || slug,
     description: post.description,
-    openGraph: {
-      title: post.title || slug,
-      description: post.description || "",
-      type: "article",
-      url: `/blog/${slug}`,
-    },
   };
+}
+
+interface MDXPostModule {
+  default: React.ComponentType;
+  metadata?: PostMeta;
 }
 
 export default async function BlogPostPage(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params;
-  try {
-    type MDXPostModule = {
-      default: React.ComponentType;
-      metadata?: PostMeta;
-    };
-    const mod = (await import(`@/content/posts/${slug}.mdx`)) as MDXPostModule;
-    const MDXContent = mod.default;
-    const meta: PostMeta = mod.metadata ?? {};
+  const posts = await getAllPosts();
+  const post = posts.find(p => p.slug === slug);
+  if (!post) notFound();
 
-    return (
-      <article className="prose prose-invert max-w-3xl px-6">
-        <header className="mb-8">
-          <h1>{meta.title || slug}</h1>
-          {meta.date && (
-            <p className="text-sm text-zinc-500">
-              <time dateTime={meta.date}>
-                {new Date(meta.date).toLocaleDateString()}
-              </time>
-            </p>
-          )}
-        </header>
-        <MDXContent />
-      </article>
-    );
-  } catch {
-    notFound();
-  }
+  const mod = (await import(`@/content/posts/${slug}.mdx`)) as MDXPostModule;
+  const MDXContent = mod.default;
+
+  return (
+    <article className="prose prose-invert mx-auto max-w-7xl px-6 flex flex-col gap-6">
+      <header className="mb-8">
+        <h1>{post.title || slug}</h1>
+        {post.date && (
+          <p className="text-sm text-zinc-500">
+            <time dateTime={post.date}>
+              {new Date(post.date).toLocaleDateString()}
+            </time>
+          </p>
+        )}
+      </header>
+      <MDXContent />
+    </article>
+  );
 }

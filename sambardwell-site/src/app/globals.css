@@ -1,5 +1,7 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
+/* Base colors & fonts */
 @layer base {
   :root {
     --background: #ffffff;
@@ -20,11 +22,137 @@
   }
 }
 
+/* Tailwind v4 design tokens (expose CSS vars) */
 @layer theme {
   @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
+  }
+}
+
+/* Typography adjustments (applies to elements inside .prose) */
+@layer utilities {
+  /* Base article text size & line height */
+  .prose {
+    @apply text-[15px] leading-relaxed;
+  }
+
+  /* Headings */
+  .prose :where(h1):not(:where(.not-prose *)) {
+    @apply text-4xl font-semibold tracking-tight mt-0 mb-4;
+  }
+  .prose :where(h2):not(:where(.not-prose *)) {
+    @apply text-2xl font-semibold mt-10 mb-3;
+  }
+  .prose :where(h3):not(:where(.not-prose *)) {
+    @apply text-xl font-semibold mt-8 mb-2;
+  }
+
+  /* Paragraph & list spacing */
+  .prose :where(p):not(:where(.not-prose *)) {
+    margin-top: 0.9rem;
+    margin-bottom: 0;
+  }
+  .prose :where(ul,ol):not(:where(.not-prose *)) {
+    margin-top: 0.9rem;
+    margin-bottom: 0;
+  }
+
+  /* Tighten first block after heading */
+  .prose :where(
+    h1 + p,
+    h2 + p,
+    h3 + p,
+    h2 + ul,
+    h3 + ul,
+    h2 + ol,
+    h3 + ol
+  ):not(:where(.not-prose *)) {
+    margin-top: 0.5rem;
+  }
+
+  /* Code blocks (higher contrast vs page bg) */
+  .prose :where(pre):not(:where(.not-prose *)) {
+    /* Subtle vertical gradient and visible border */
+    background: linear-gradient(180deg, #181818, #121212);
+    border: 1px solid rgba(63,63,70,0.6); /* zinc-600ish */
+    @apply rounded-lg px-4 py-3 overflow-x-auto;
+    margin-top: 0.9rem;
+    margin-bottom: 0;
+    box-shadow:
+      0 0 0 1px rgba(63,63,70,0.4),
+      0 4px 12px -4px rgba(0,0,0,0.6);
+    position: relative;
+  }
+
+  /* Optional accent bar on top of fenced blocks */
+  .prose :where(pre)::before {
+    content: "";
+    display: block;
+    @apply h-[3px] w-full rounded-t-md mb-2;
+    background: linear-gradient(90deg, #10b981, #2563eb);
+  }
+
+  /* Consecutive code blocks closer together */
+  .prose :where(pre + pre):not(:where(.not-prose *)) {
+    margin-top: 0.5rem;
+  }
+
+  /* Inline code (pill) */
+  .prose :where(code):not(:where(pre code,.not-prose *)) {
+    @apply font-medium text-[13px];
+    background: rgba(63,63,70,0.5);
+    color: #34d399; /* emerald-400 */
+    padding: 0.15rem 0.45rem;
+    border-radius: 0.35rem;
+    border: 1px solid rgba(82,82,91,0.6);
+  }
+
+  /* Code text inside fenced block */
+  .prose :where(pre code):not(:where(.not-prose *)) {
+    @apply bg-transparent p-0 text-[13px] leading-relaxed;
+    color: #e5e5e5;
+  }
+
+  /* Links */
+  .prose :where(a):not(:where(.not-prose *)) {
+    @apply font-medium underline underline-offset-4 transition-colors;
+    color: #34d399;
+    text-decoration-color: rgba(52,211,153,0.4);
+  }
+  .prose :where(a:hover):not(:where(.not-prose *)) {
+    color: #6ee7b7;
+    text-decoration-color: #6ee7b7;
+  }
+
+  /* Blockquotes */
+  .prose :where(blockquote):not(:where(.not-prose *)) {
+    @apply italic rounded-r;
+    border-left: 4px solid #3f3f46;
+    background: rgba(24,24,27,0.6);
+    padding-left: 1rem;
+    margin: 1.2rem 0 0;
+    color: #a1a1aa;
+  }
+
+  /* Lists */
+  .prose :where(ul):not(:where(.not-prose *)) {
+    @apply list-disc pl-6 space-y-1;
+  }
+  .prose :where(ol):not(:where(.not-prose *)) {
+    @apply list-decimal pl-6 space-y-1;
+  }
+
+  /* Horizontal rule */
+  .prose :where(hr):not(:where(.not-prose *)) {
+    @apply my-10;
+    border-color: #27272a;
+  }
+
+  /* Final element bottom trim */
+  .prose :where(p:last-child, ul:last-child, ol:last-child, pre:last-child, blockquote:last-child):not(:where(.not-prose *)) {
+    margin-bottom: 0;
   }
 }

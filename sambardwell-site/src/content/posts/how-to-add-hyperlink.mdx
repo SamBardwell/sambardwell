@@ -1,0 +1,45 @@
+export const metadata = {
+  title: "How to add a hyperlink in Readme.MD",
+  description: "Tiny cheat‑sheet for Markdown links.",
+  date: "2025-01-15",
+  type: "Tutorial",
+  energy: ["Readme.md"],
+  difficulty: 1,
+  impact: 1,
+  tags: ["markdown", "docs"],
+  thumbnail: "/cards/pal.203.magikarp.png",
+  draft: false
+};
+
+## Inline link
+```md
+[link text](https://example.com)
+```
+Result: [link text](https://example.com)
+
+Add a hover title:
+```md
+[Next.js Docs](https://nextjs.org "Official Next.js Documentation")
+```
+
+## Reference link (reuse a URL)
+```md
+See the [docs][next].
+
+[next]: https://nextjs.org
+```
+
+## Link to a heading in the same file
+```md
+[Jump to Installation](#installation)
+```
+
+## Relative link to a repo file
+```md
+[License](./LICENSE)
+```
+
+## Image link (just add !)
+```md
+![Alt text](./public/logo.png)
+```
