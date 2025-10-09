@@ -22,7 +22,7 @@ function PostCardSkeleton() {
 
 export function PostCardSkeletonGrid({ count = 6 }: { count?: number }) {
   return (
-    <div className="mx-auto max-w-7xl px-6 flex flex-col gap-6">
+    <div className="site-container flex flex-col gap-6">
       <div className="grid items-stretch gap-4 grid-cols-[repeat(auto-fill,minmax(11rem,1fr))]">
         {Array.from({ length: count }).map((_, i) => (
           <PostCardSkeleton key={i} />

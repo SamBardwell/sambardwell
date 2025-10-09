@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="mx-auto max-w-7xl px-6 flex flex-col gap-6">
+    <div className="site-container flex flex-col gap-6">
       <h1 className="text-2xl font-semibold">Under Construction</h1>
       <p className="mt-4 text-sm text-zinc-400">
         Check back soon.

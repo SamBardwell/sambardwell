@@ -38,7 +38,7 @@ export default async function BlogPostPage(
   const MDXContent = mod.default;
 
   return (
-    <article className="prose prose-invert mx-auto max-w-7xl px-6 flex flex-col gap-6">
+    <article className="prose prose-invert site-container flex flex-col gap-6">
       <header className="mb-8">
         <h1>{post.title || slug}</h1>
         {post.date && (

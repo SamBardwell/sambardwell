@@ -7,14 +7,13 @@ export const metadata = {
 };
 
 export default function ResumePage() {
-  // Define strongly‑typed CSS custom properties (no 'any')
   const layoutVars: React.CSSProperties = {
     "--resume-main-max": "800px",
-    "--resume-side-width": "380px",
+    "--resume-side-width": "300px",
   } as React.CSSProperties;
 
   return (
-    <div className="mx-auto max-w-7xl px-6">
+    <div className="site-container">
       <div className="resume-grid gap-8" style={layoutVars}>
         <section className="resume-main">
           <h1 className="text-4xl font-semibold mb-6">Resume</h1>

@@ -26,7 +26,7 @@ export function Nav() {
   );
 
   return (
-    <nav className="mx-auto max-w-7xl px-6 flex h-14 items-center gap-6">
+    <nav className="site-container flex h-14 items-center gap-6">
       <div className="font-semibold tracking-tight">Sam Bardwell</div>
       <ul className="flex items-center gap-4 text-sm">
         {items.map((l) => (

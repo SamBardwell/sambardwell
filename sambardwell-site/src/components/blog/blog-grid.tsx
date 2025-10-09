@@ -40,7 +40,7 @@ export function BlogGrid({ initialPosts, filterOptions }: BlogGridProps) {
   }, [initialPosts, activeTypes, activeEnergy, sort]);
 
   return (
-    <main className="mx-auto max-w-7xl px-6 flex flex-col gap-6">
+    <main className="site-container flex flex-col gap-6">
       <FiltersBar types={filterOptions.types} energies={filterOptions.energies} />
       <div className="grid items-stretch gap-4 grid-cols-[repeat(auto-fill,minmax(11rem,1fr))]">
         {filtered.map((p) => (

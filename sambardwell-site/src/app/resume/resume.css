@@ -1,0 +1,85 @@
+.resume-grid{
+  display:grid;
+  grid-template-columns:
+    minmax(0, clamp(600px, 58vw, var(--resume-main-max, 760px)))
+    minmax(0, var(--resume-side-width, 320px));
+  gap:1.25rem;
+  align-items:start;
+}
+.resume-main{ padding-right:0.75rem; }
+.resume-side{ margin-left:0; }
+
+/* Timeline rows */
+.resume-item{ display:grid; grid-template-columns:1fr 140px; gap:1rem; padding:1.25rem 0; align-items:start; }
+.resume-year{ align-self:start; color:rgba(255,255,255,.35); font-weight:600; font-size:.95rem; text-align:right; padding-left:1rem; padding-right:0; }
+.resume-content{ position:relative; }
+.resume-rail{
+  position:absolute; left:0; top:.6rem; bottom:.6rem; width:2px; border-radius:2px;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  box-shadow:0 0 0 1px rgba(255,255,255,.01) inset; pointer-events:none;
+}
+.resume-side-rail{
+  position:absolute; left:0; top:.35rem; bottom:.35rem; width:2px; border-radius:2px;
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  box-shadow:0 0 0 1px rgba(255,255,255,.04) inset; pointer-events:none;
+}
+.resume-content-inner{ margin-left:1rem; }
+
+/* Bullets */
+.resume-points{ list-style:disc; list-style-position:outside; padding-left:1rem; margin:0; }
+.resume-points li{ margin:0; padding-left:0; }
+.resume-points li::marker{ color:#10b981; font-size:.95em; }
+
+/* Sidebar sections + rails */
+.resume-side-block{ position:relative; padding-left:1.25rem; margin-bottom:3rem; }
+.resume-side-block:last-child{ margin-bottom:0; }
+.side-rail-wrap{ position:relative; padding-left:1.15rem; }
+.side-rail{
+  position:absolute; left:0; top:.25rem; bottom:.25rem; width:2px; border-radius:2px;
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  box-shadow:0 0 0 1px rgba(255,255,255,.04) inset; pointer-events:none;
+}
+.resume-side-inner{ background:transparent; padding-left:.25rem; margin-top:4rem; }
+.resume-side-heading{ font-size:1.25rem; font-weight:600; margin:0 0 .75rem 0; line-height:1.15; }
+.resume-side-body{ font-size:.875rem; color:rgb(212 212 216); }
+
+/* Education block with right-aligned year */
+.education-entry{ display:grid; grid-template-columns:1fr auto; gap:1.5rem; align-items:baseline; position:relative; }
+.education-year{ color:rgba(255,255,255,.35); font-weight:600; font-size:.95rem; padding-top:0; white-space:nowrap; }
+
+/* Responsive collapse */
+@media (max-width:900px){
+  .resume-grid{ grid-template-columns:1fr; gap:1.1rem; }
+  .resume-side{ margin-top:1.5rem; }
+
+  .resume-item{
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    column-gap: .75rem;
+  }
+  .resume-year{
+    align-self: baseline;
+    text-align: right;
+    padding-left: .5rem;
+    margin-top: 0;
+    white-space: nowrap;
+  }
+
+  .resume-content{ padding-left: .9rem; }
+  .resume-content-inner{ margin-left: 0; }
+  .resume-rail{ display: block; }
+  .resume-points{ list-style-position: outside; padding-left: 1rem; }
+
+  .resume-side-block{ padding-left: .9rem; }
+  .side-rail-wrap{ padding-left: .9rem; }
+  .side-rail{ display: block; }
+
+  .education-entry{ grid-template-columns:1fr; }
+  .education-year{ padding-top:.25rem; order:-1; }
+}
+
+/* Print */
+@media print{
+  .resume-grid{ grid-template-columns:1fr 320px; gap:1rem; }
+  .education-year{ color:#555; }
+}

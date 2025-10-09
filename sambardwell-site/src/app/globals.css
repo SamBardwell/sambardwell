@@ -6,8 +6,8 @@
   :root {
     --background: #ffffff;
     --foreground: #171717;
-    --resume-main-max: 700px;
-    --resume-side-width: 320px;
+    --site-max: 960px;
+    --site-x: 1.25rem;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -36,192 +36,21 @@
 
 /* Typography adjustments (applies to elements inside .prose) */
 @layer utilities {
-  .resume-side-block {
-    position: relative;
-    padding-left: 1.25rem;          /* space for rail */
-    margin-bottom: 3rem;
-  }
-  .resume-side-block:last-child { margin-bottom: 0; }
-
-  .side-rail-wrap {
-    position: relative;
-    padding-left: 1.15rem; /* space for segment rail */
-  }
-  .side-rail {
-    position: absolute;
-    left: 0;
-    top: 0.25rem;          /* start just below the heading (or wrapper top) */
-    bottom: 0.25rem;
-    width: 2px;
-    border-radius: 2px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.04) inset;
-    pointer-events: none;
-  }
-
-  .resume-grid {
-    display: grid;
-    /* Left column capped by --resume-main-max, right column by new var */
-    grid-template-columns:
-      minmax(0, clamp(600px, 58vw, var(--resume-main-max)))
-      minmax(0, var(--resume-side-width));
-    gap: 2rem; /* reduce/increase spacing between columns */
-    align-items: start;
-  }
-
-  .resume-main {
-    /* left column content */
-    padding-right: 2rem; /* decrease/increase to tune how far from the divider the bullets stop */
-  }
-
-  .resume-side {
-    margin-left: 0;
-  }
-
-  .resume-item {
-    display: grid;
-    grid-template-columns: 1fr 140px;
-    gap: 1rem;
-    padding: 1.25rem 0;
-    align-items: start;
-  }
-
-  .resume-year {
-    align-self: start;
-    color: rgba(255,255,255,0.35);
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-align: right;
-    padding-left: 1rem;
-    padding-right: 0;
-  }
-
-  .resume-content {
-    position: relative;
-  }
-
-  .resume-rail {
-    position: absolute;
-    left: 0;
-    top: 0.6rem;      /* start just below the title baseline */
-    bottom: 0.6rem;   /* end slightly above bottom for breathing room */
-    width: 2px;
-    border-radius: 2px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.01) inset;
-    pointer-events: none;
-  }
-
-  .resume-side-rail {
-    position: absolute;
-    left: 0;
-    top: 0.35rem;                   /* start just under heading top */
-    bottom: 0.35rem;
-    width: 2px;
-    border-radius: 2px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.04) inset;
-    pointer-events: none;
-  }
-  
-  .resume-content-inner {
-    margin-left: 1rem; /* <-- controls where title/company start. increase to move everything right */
-  }
-
-  /* lists: explicit bullets, UL controls indent so bullets always appear */
-  .resume-points {
-    list-style-type: disc;
-    list-style-position: outside;
-    padding-left: 1rem; /* space from left rail + bullet area */
-    margin: 0;
-  }
-  .resume-points li {
-    margin: 0;
-    padding-left: 0; /* keep text aligned under itself */
-  }
-  /* color the marker (modern browsers) */
-  .resume-points li::marker {
-    color: #10b981; /* emerald-500 */
-    font-size: 0.95em;
-  }
-
-   .education-entry {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 1.5rem;
-    align-items: baseline;
-    position: relative;
-  }
-  .education-year {
-    color: rgba(255,255,255,0.35);
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding-top: 0;  /* align with school name baseline */
-    white-space: nowrap;
-  }
-
-  /* small screens: reduce left padding so layout fits */
-  @media (max-width: 900px) {
-    .resume-points {
-      list-style-position: outside;
-      padding-left: 1rem;
-    }
-    .resume-points li { padding-left: 0; }
-    .resume-side-block {
-      padding-left: 0.75rem;
-      margin-bottom: 2rem;
-    }
-    .side-rail-wrap { padding-left: 0.75rem; }
-    .education-entry {
-      grid-template-columns: 1fr;
-    }
-    .education-year {
-      padding-top: 0.25rem;
-      order: -1; /* put year above if preferred; remove to put below */
-    }
-  }
-
-  /* Sidebar inner */
-  .resume-side-inner {
-    background: transparent;
-    padding-left: 0.25rem;
-    margin-top: 4rem; /* <-- bump this value if needed */
-  }
-
-  .resume-side-heading {
-    @apply text-xl font-semibold;
-    margin: 0 0 0.75rem 0;
-    line-height: 1.15;
-  }
-
-  .resume-side-body {
-    @apply text-sm text-zinc-300;
+  .site-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--site-max);
+    padding-left: var(--site-x);
+    padding-right: var(--site-x);
   }
 
   /* Print / PDF rules */
   @media print {
     body { background: white !important; color: black !important; }
-    .resume-grid { grid-template-columns: 1fr 320px; gap: 1rem; }
     .prose { color: inherit; }
     header, footer, .filters-bar { display: none !important; }
-    .resume-item { border-color: #ddd; }
-    .resume-side-rail {
-      background: #000;
-      box-shadow: none;
-    }
-    .side-rail {
-      background: #000;
-      box-shadow: none;
-    }
-    .education-year { color: #555; }
   }
 
-  /* Small screens stack */
-  @media (max-width: 900px) {
-    .resume-content-inner { margin-left: 0; }
-    .resume-points { list-style-position: outside; padding-left: 1rem; }
-    .resume-points li { padding-left: 0; }
-  }
   /* Base article text size & line height */
   .prose {
     @apply text-[15px] leading-relaxed;
@@ -265,7 +94,7 @@
   .prose :where(pre):not(:where(.not-prose *)) {
     /* Subtle vertical gradient and visible border */
     background: linear-gradient(180deg, #181818, #121212);
-    border: 1px solid rgba(63,63,70,0.6); /* zinc-600ish */
+    border: 1px solid rgba(63,63,70,0.6);
     @apply rounded-lg px-4 py-3 overflow-x-auto;
     margin-top: 0.9rem;
     margin-bottom: 0;
@@ -338,7 +167,7 @@
     @apply my-10;
     border-color: #27272a;
   }
-  
+
   @keyframes shimmer {
     0% { background-position: 0% 50%; }
     100% { background-position: -200% 50%; }
