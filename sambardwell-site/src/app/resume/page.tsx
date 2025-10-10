@@ -13,7 +13,7 @@ export default function ResumePage() {
   } as React.CSSProperties;
 
   return (
-    <div className="site-container">
+    <div className="resume-paper">
       <div className="resume-grid gap-8" style={layoutVars}>
         <section className="resume-main">
           <h1 className="text-4xl font-semibold mb-6">Resume</h1>

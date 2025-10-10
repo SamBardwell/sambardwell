@@ -9,6 +9,21 @@
 .resume-main{ padding-right:0.75rem; }
 .resume-side{ margin-left:0; }
 
+.resume-paper {
+  --resume-paper-w: 960px;
+  --resume-paper-pad: 2rem;
+
+  margin-inline: auto;
+  inline-size: min(100%, var(--resume-paper-w));
+  padding: var(--resume-paper-pad);
+
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  background: transparent;
+}
+
+
 /* Timeline rows */
 .resume-item{ display:grid; grid-template-columns:1fr 140px; gap:1rem; padding:1.25rem 0; align-items:start; }
 .resume-year{ align-self:start; color:rgba(255,255,255,.35); font-weight:600; font-size:.95rem; text-align:right; padding-left:1rem; padding-right:0; }
@@ -47,6 +62,11 @@
 .education-entry{ display:grid; grid-template-columns:1fr auto; gap:1.5rem; align-items:baseline; position:relative; }
 .education-year{ color:rgba(255,255,255,.35); font-weight:600; font-size:.95rem; padding-top:0; white-space:nowrap; }
 
+/* tighten padding on narrow screens */
+@media (max-width: 700px) {
+  .resume-paper { padding: 1rem; border-radius: 10px; }
+}
+
 /* Responsive collapse */
 @media (max-width:900px){
   .resume-grid{ grid-template-columns:1fr; gap:1.1rem; }
@@ -82,4 +102,14 @@
 @media print{
   .resume-grid{ grid-template-columns:1fr 320px; gap:1rem; }
   .education-year{ color:#555; }
+}
+
+@media print {
+  .resume-paper {
+    inline-size: 8.5in;           /* Letter width */
+    padding: 0.5in;
+    border: none;
+    box-shadow: none;
+    background: white;
+  }
 }

@@ -6,7 +6,7 @@ export function Sidebar() {
       <section className="resume-side-block">
         <h4 className="resume-side-heading">Education</h4>
         <div className="education-entry">
-          <div className="side-rail-wrap pr-4">
+          <div className="side-rail-wrap">
             <span className="side-rail" aria-hidden />
             <div className="resume-side-body space-y-2">
               <div className="font-medium text-base">Buena Vista University</div>

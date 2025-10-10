@@ -42,7 +42,7 @@ export function BlogGrid({ initialPosts, filterOptions }: BlogGridProps) {
   return (
     <main className="site-container flex flex-col gap-6">
       <FiltersBar types={filterOptions.types} energies={filterOptions.energies} />
-      <div className="grid items-stretch gap-4 grid-cols-[repeat(auto-fill,minmax(11rem,1fr))]">
+      <div className="grid items-stretch gap-2 grid-cols-[repeat(auto-fill,minmax(11rem,1fr))]">
         {filtered.map((p) => (
           <PostCard key={p.slug} post={p} />
         ))}
