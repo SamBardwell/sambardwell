@@ -47,13 +47,6 @@
     padding-right: var(--site-x);
   }
 
-  /* Print / PDF rules */
-  @media print {
-    body { background: white !important; color: black !important; }
-    .prose { color: inherit; }
-    header, footer, .filters-bar { display: none !important; }
-  }
-
   /* Base article text size & line height */
   .prose {
     @apply text-[15px] leading-relaxed;

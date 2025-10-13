@@ -1,83 +1,205 @@
-.resume-grid{
-  display:grid;
-  grid-template-columns:
-    minmax(0, clamp(600px, 58vw, var(--resume-main-max, 760px)))
-    minmax(0, var(--resume-side-width, 320px));
-  gap:1.25rem;
-  align-items:start;
-}
-.resume-main{ padding-right:0.75rem; }
-.resume-side{ margin-left:0; }
-
+/* Resume Layout Variables */
 .resume-paper {
   --resume-paper-w: 960px;
   --resume-paper-pad: 2rem;
+  --resume-bullet-indent: 1rem;
 
   margin-inline: auto;
   inline-size: min(100%, var(--resume-paper-w));
   padding: var(--resume-paper-pad);
-
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,0.12);
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
   background: transparent;
 }
 
-
-/* Timeline rows */
-.resume-item{ display:grid; grid-template-columns:1fr 140px; gap:1rem; padding:1.25rem 0; align-items:start; }
-.resume-year{ align-self:start; color:rgba(255,255,255,.35); font-weight:600; font-size:.95rem; text-align:right; padding-left:1rem; padding-right:0; }
-.resume-content{ position:relative; }
-.resume-rail{
-  position:absolute; left:0; top:.6rem; bottom:.6rem; width:2px; border-radius:2px;
-  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-  box-shadow:0 0 0 1px rgba(255,255,255,.01) inset; pointer-events:none;
+/* Main Grid Layout */
+.resume-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, clamp(600px, 58vw, var(--resume-main-max, 760px)))
+    minmax(0, var(--resume-side-width, 320px));
+  gap: 1.25rem;
+  align-items: start;
 }
-.resume-side-rail{
-  position:absolute; left:0; top:.35rem; bottom:.35rem; width:2px; border-radius:2px;
-  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-  box-shadow:0 0 0 1px rgba(255,255,255,.04) inset; pointer-events:none;
+
+.resume-main { 
+  padding-right: 0.75rem; 
 }
-.resume-content-inner{ margin-left:1rem; }
 
-/* Bullets */
-.resume-points{ list-style:disc; list-style-position:outside; padding-left:1rem; margin:0; }
-.resume-points li{ margin:0; padding-left:0; }
-.resume-points li::marker{ color:#10b981; font-size:.95em; }
-
-/* Sidebar sections + rails */
-.resume-side-block{ position:relative; padding-left:1.25rem; margin-bottom:3rem; }
-.resume-side-block:last-child{ margin-bottom:0; }
-.side-rail-wrap{ position:relative; padding-left:1.15rem; }
-.side-rail{
-  position:absolute; left:0; top:.25rem; bottom:.25rem; width:2px; border-radius:2px;
-  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-  box-shadow:0 0 0 1px rgba(255,255,255,.04) inset; pointer-events:none;
+.resume-side { 
+  margin-left: 0; 
 }
-.resume-side-inner{ background:transparent; padding-left:.25rem; margin-top:4rem; }
-.resume-side-heading{ font-size:1.25rem; font-weight:600; margin:0 0 .75rem 0; line-height:1.15; }
-.resume-side-body{ font-size:.875rem; color:rgb(212 212 216); }
 
-/* Education block with right-aligned year */
-.education-entry{ display:grid; grid-template-columns:1fr auto; gap:1.5rem; align-items:baseline; position:relative; }
-.education-year{ color:rgba(255,255,255,.35); font-weight:600; font-size:.95rem; padding-top:0; white-space:nowrap; }
+/* Top Bar (screen only) */
+.resume-topbar {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
 
-/* tighten padding on narrow screens */
+/* Timeline Items */
+.resume-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 140px;
+  grid-template-rows: auto auto;
+  column-gap: 0.75rem;
+  row-gap: 0.35rem;
+  padding: 1.1rem 0;
+  align-items: start;
+  overflow: visible;
+}
+
+.resume-head {
+  grid-column: 1;
+  grid-row: 1;
+  padding-left: 1rem;
+  min-width: 0;
+}
+
+.resume-year {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  color: rgba(255,255,255,.35);
+  font-weight: 600;
+  font-size: .95rem;
+  text-align: right;
+  padding-left: 1rem;
+  white-space: nowrap;
+}
+
+.resume-body {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin-left: var(--resume-bullet-indent);
+  padding-left: 1rem;
+  min-width: 0;
+}
+
+/* Bullet Points */
+.resume-points {
+  list-style: disc outside;
+  padding-left: 0;
+  margin: 0;
+}
+
+.resume-points li {
+  margin: 0.3rem 0;
+  padding-left: 0;
+  line-height: 1.4;
+}
+
+.resume-points li::marker { 
+  color: #10b981; 
+  font-size: .95em; 
+}
+
+/* Vertical Rails */
+.resume-rail {
+  position: absolute;
+  left: 0.25rem;
+  top: .6rem;
+  bottom: .6rem;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  box-shadow: 0 0 0 1px rgba(255,255,255,.01) inset;
+  pointer-events: none;
+}
+
+/* Sidebar */
+.resume-side-inner { 
+  background: transparent; 
+  padding-left: .25rem; 
+  margin-top: 4rem; 
+}
+
+.resume-side-block { 
+  position: relative; 
+  padding-left: 1.25rem; 
+  margin-bottom: 3rem; 
+}
+
+.resume-side-block:last-child { 
+  margin-bottom: 0; 
+}
+
+.resume-side-heading { 
+  font-size: 1.25rem; 
+  font-weight: 600; 
+  margin: 0 0 .75rem 0; 
+  line-height: 1.15; 
+}
+
+.resume-side-body { 
+  font-size: .875rem; 
+  color: rgb(212 212 216); 
+  line-height: 1.4; 
+}
+
+.side-rail-wrap { 
+  position: relative; 
+  padding-left: 1.15rem; 
+}
+
+.side-rail {
+  position: absolute; 
+  left: 0; 
+  top: .25rem; 
+  bottom: .25rem; 
+  width: 2px; 
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  box-shadow: 0 0 0 1px rgba(255,255,255,.04) inset; 
+  pointer-events: none;
+}
+
+/* Education Block */
+.education-entry { 
+  display: grid; 
+  grid-template-columns: 1fr auto; 
+  gap: 1.5rem; 
+  align-items: baseline; 
+  position: relative; 
+}
+
+.education-year { 
+  color: rgba(255,255,255,.35); 
+  font-weight: 600; 
+  font-size: .95rem; 
+  padding-top: 0; 
+  white-space: nowrap; 
+}
+
+/* Mobile Responsive */
 @media (max-width: 700px) {
-  .resume-paper { padding: 1rem; border-radius: 10px; }
+  .resume-paper { 
+    padding: 1rem; 
+    border-radius: 10px; 
+  }
 }
 
-/* Responsive collapse */
-@media (max-width:900px){
-  .resume-grid{ grid-template-columns:1fr; gap:1.1rem; }
-  .resume-side{ margin-top:1.5rem; }
+@media (max-width: 900px) {
+  .resume-grid { 
+    grid-template-columns: 1fr; 
+    gap: 1.1rem; 
+  }
+  
+  .resume-side { 
+    margin-top: 1.5rem; 
+  }
 
-  .resume-item{
+  .resume-item {
     grid-template-columns: 1fr auto;
     align-items: baseline;
     column-gap: .75rem;
   }
-  .resume-year{
+  
+  .resume-year {
     align-self: baseline;
     text-align: right;
     padding-left: .5rem;
@@ -85,31 +207,219 @@
     white-space: nowrap;
   }
 
-  .resume-content{ padding-left: .9rem; }
-  .resume-content-inner{ margin-left: 0; }
-  .resume-rail{ display: block; }
-  .resume-points{ list-style-position: outside; padding-left: 1rem; }
+  .resume-points { 
+    list-style-position: outside; 
+    padding-left: 1rem; 
+  }
 
-  .resume-side-block{ padding-left: .9rem; }
-  .side-rail-wrap{ padding-left: .9rem; }
-  .side-rail{ display: block; }
+  .resume-side-block { 
+    padding-left: .9rem; 
+  }
+  
+  .side-rail-wrap { 
+    padding-left: .9rem; 
+  }
 
-  .education-entry{ grid-template-columns:1fr; }
-  .education-year{ padding-top:.25rem; order:-1; }
+  .education-entry { 
+    grid-template-columns: 1fr; 
+  }
+  
+  .education-year { 
+    padding-top: .25rem; 
+    order: -1; 
+  }
 }
 
-/* Print */
-@media print{
-  .resume-grid{ grid-template-columns:1fr 320px; gap:1rem; }
-  .education-year{ color:#555; }
-}
-
+/* Print Styles */
 @media print {
+  /* Hide print button, navigation header */
+  .print\:hidden,
+  header,
+  footer {
+    display: none !important;
+  }
+  
+  .resume-topbar { 
+    display: none !important; 
+  }
+
+  /* Print-only header with name and contact */
+  .print-header {
+    display: block !important;
+    text-align: center !important;
+    margin-bottom: 1.5rem !important;
+    margin-top: 0 !important;
+    padding-bottom: 0.5rem !important;
+    border-bottom: 1px solid #e5e5e5 !important;
+  }
+  
+  .print-header h1 {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    margin: 0 0 0.5rem 0 !important;
+    color: #1a1a1a !important;
+  }
+  
+  .print-header .contact-info {
+    font-size: 0.875rem !important;
+    color: #666 !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 1rem !important;
+    flex-wrap: nowrap !important;
+    white-space: nowrap !important;
+  }
+
   .resume-paper {
-    inline-size: 8.5in;           /* Letter width */
+    inline-size: 8.5in;
     padding: 0.5in;
+    padding-top: 0.25in !important;
     border: none;
     box-shadow: none;
     background: white;
+    --resume-bullet-indent: 0.5rem;
   }
+  
+  .resume-grid { 
+    grid-template-columns: 1fr 260px;
+    gap: 1rem;
+    align-items: start !important;
+  }
+
+  .resume-main {
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .resume-side {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .resume-side-inner {
+    margin-top: 0 !important;
+  }
+
+  .resume-item {
+    grid-template-columns: 1fr 140px !important;
+    grid-template-rows: auto auto !important;
+    column-gap: 0.5rem !important;
+    row-gap: 0.25rem !important;
+    padding: 0.6rem 0 !important;
+    align-items: start !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  
+  .resume-head {
+    padding-left: 1rem !important;
+  }
+  
+  .resume-body {
+    margin-left: var(--resume-bullet-indent) !important;
+    padding-left: 1rem !important;
+  }
+
+  .resume-item:first-child {
+    padding-top: 0 !important;
+  }
+
+  .resume-points {
+    margin-top: 0.3rem !important;
+  }
+
+  .resume-points li {
+    margin: 0.1rem 0 !important;
+  }
+
+  .resume-points li::marker {
+    color: #000000 !important;
+  }
+  
+  .resume-rail,
+  .side-rail {
+    background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.05)) !important;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.06) inset !important;
+  }
+
+  .resume-side-block {
+    margin-bottom: 1rem !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .resume-side-block:first-child {
+    margin-top: 0 !important;
+    margin-top: -0.08rem !important;
+  }
+
+  .resume-side-block:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .resume-main h2,
+  .resume-side-heading {
+    margin-top: 0 !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 1.25rem !important;
+  }
+
+  .education-entry {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    align-items: baseline !important;
+    gap: 1rem !important;
+  }
+  
+  .education-year {
+    order: 0 !important;
+    align-self: baseline !important;
+    text-align: right !important;
+    padding-top: 0 !important;
+    padding-left: 1rem !important;
+    white-space: nowrap !important;
+    color: #555;
+  }
+
+  .text-zinc-400,
+  .text-zinc-300,
+  .text-zinc-500 {
+    color: #1a1a1a !important;
+  }
+
+  h1, h2, h3, h4, h5, h6,
+  .resume-side-heading,
+  .font-semibold,
+  .font-medium,
+  div, p, span, li {
+    color: #1a1a1a !important;
+  }
+
+  .print-header {
+    break-after: avoid-page !important;
+    page-break-after: avoid !important;
+    margin-bottom: 0.6rem !important;
+    border-bottom: none !important;
+  }
+
+  .resume-grid {
+    break-before: auto !important;
+    page-break-before: auto !important;
+  }
+
+  .resume-paper {
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+}
+
+@page {
+  margin: 0.25in !important;
+  size: letter !important;
+}
+
+/* Hide print header on screen */
+.print-header {
+  display: none;
 }

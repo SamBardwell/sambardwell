@@ -6,12 +6,13 @@ export function Sidebar() {
       <section className="resume-side-block">
         <h4 className="resume-side-heading">Education</h4>
         <div className="education-entry">
-          <div className="side-rail-wrap">
-            <span className="side-rail" aria-hidden />
-            <div className="resume-side-body space-y-2">
-              <div className="font-medium text-base">Buena Vista University</div>
-              <div>Computer Science B.S. with concentration in AI and Robotics.</div>
-              <div>Mathematics Minor.</div>
+          <div className="education-content">
+            <div className="side-rail-wrap">
+              <span className="side-rail" aria-hidden />
+              <div className="resume-side-body space-y-2">
+                <div className="font-medium text-base text-white">BVU</div>
+                <div className="text-white">B.S. in Computer Science (AI & Robotics); Mathematics minor</div>
+              </div>
             </div>
           </div>
           <div className="education-year">2023</div>
@@ -36,9 +37,9 @@ export function Sidebar() {
         <div className="side-rail-wrap">
           <span className="side-rail" aria-hidden />
           <ul className="resume-side-body space-y-2">
-            <li><strong>Web Scraping Application, Contracted:</strong> Implemented website query functionality using Selenium, AWS, Python.</li>
-            <li><strong>Pandora, Senior Capstone Project:</strong> Developed a 2D exploration game with a top-down perspective in Unity. Utilized Perlin noise for infinite, procedurally generated worlds. Implemented resource collection and inventory management systems, with biomes and a day-night cycle. Players must gather resources to upgrade their oxygen tanks and explore further. The game features resource types and an orbiter inventory to prevent resource loss upon respawn.</li>
-            <li><strong>Predicting Hazardous Asteroids (Machine Learning Final):</strong> Compare and contrasted adaptive boosting and decision trees with queried asteroid data from JPL.</li>
+            <li><strong>Web Scraping Application:</strong> automated data extraction from website using Selenium, AWS, Python</li>
+            <li><strong>Pandora:</strong> infinite exploration game in Unity with day-night cycles and procedural world generation</li>
+            <li><strong>Predicting Hazardous Asteroids:</strong> machine learning model to identify potentially hazardous space objects</li>
           </ul>
         </div>
       </section>
@@ -50,10 +51,9 @@ export function Sidebar() {
           <ul className="resume-side-body space-y-2">
             <li>STEM CAREERS Scholarship</li>
             <li>Student Activities Board</li>
-            <li>Men’s Soccer</li>
-            <li>Associated for Computing Machinery</li>
+            <li>Men&apos;s Soccer</li>
+            <li>ACM and Robotics club</li>
             <li>Orientation team</li>
-            <li>Robotics club</li>
           </ul>
         </div>
       </section>
