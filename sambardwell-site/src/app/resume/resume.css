@@ -115,7 +115,7 @@
 .resume-side-inner { 
   background: transparent; 
   padding-left: .25rem; 
-  margin-top: 4rem; 
+  margin-top: 0;
 }
 
 .resume-side-block { 
