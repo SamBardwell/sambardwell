@@ -11,7 +11,7 @@ export function Sidebar() {
               <span className="side-rail" aria-hidden />
               <div className="resume-side-body space-y-2">
                 <div className="font-medium text-base text-white">BVU</div>
-                <div className="text-white">B.S. in Computer Science (AI & Robotics); Mathematics minor</div>
+                <div className="text-zinc-300">B.S. in Computer Science (AI & Robotics); Mathematics minor</div>
               </div>
             </div>
           </div>
