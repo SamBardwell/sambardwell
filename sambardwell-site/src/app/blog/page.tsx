@@ -45,7 +45,7 @@ export default function BlogIndex() {
           rel="noopener noreferrer"
           className="underline hover:text-zinc-400"
         >
-          RareCandy
+          Rare Candy
         </a>
         , a TCG collector app
       </p>

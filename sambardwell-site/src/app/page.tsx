@@ -84,10 +84,10 @@ export default function Home() {
               { name: "React", technical: true },
               { name: "AI & Machine Learning", technical: false },
               { name: "Python", technical: true },
-              { name: "Web Development", technical: true },
               { name: "Cloud Architecture", technical: false },
               { name: "Pokemon", technical: false },
-              { name: "UI Design", technical: true },
+              { name: "UI Design", technical: false },
+              { name: "Web Development", technical: true },
               { name: "D&D", technical: false },
               { name: "The Universe", technical: false },
             ].map((item) => (
