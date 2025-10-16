@@ -40,7 +40,7 @@ export default function BlogIndex() {
       <p className="site-container mt-8 text-xs text-zinc-500 text-center">
         Card-based layout inspired by{" "}
         <a
-          href="https://rarecandy.app"
+          href="https://rarecandy.com"
           target="_blank"
           rel="noopener noreferrer"
           className="underline hover:text-zinc-400"
